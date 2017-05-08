@@ -1,5 +1,6 @@
 package com.example.rmedhi.app_chalk;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+
+import static android.R.attr.value;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -159,6 +162,9 @@ public class MainActivity extends AppCompatActivity {
                 String status=response.body().getStatus();
                 if (status.equals("1")==true) {
                     Log.d("Login", "Success");
+                    Intent myIntent = new Intent(MainActivity.this, LandingPage.class);
+                    myIntent.putExtra("key", value); //Optional parameters
+                    MainActivity.this.startActivity(myIntent);
                 }
                 else
                     Log.d("Login","fail");
