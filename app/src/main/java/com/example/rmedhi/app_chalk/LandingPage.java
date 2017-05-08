@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -52,8 +55,44 @@ public class LandingPage extends AppCompatActivity {
 
     private ArrayList<Pollcard> cardsList = new ArrayList<>();
 
+    private ArrayList<Polldata> polls;
+    ArrayList<Option_data> options;
+    ArrayList<Topic_data> topics;
+
     @BindView(R.id.rl)
     RelativeLayout mRelativeLayout;
+
+    @Override
+    public MenuInflater getMenuInflater() {
+        return super.getMenuInflater();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater mymenu = getMenuInflater();
+        mymenu.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_poll:
+//                int position = 0;
+                // setting blank template
+//                cardsList.add(position, new CardList());
+//                mAdapter.notifyItemInserted(0);
+//                mRecyclerView.scrollToPosition(position);
+//                mRecyclerView.setVisibility(View.VISIBLE);
+//                welcometext.setVisibility(View.INVISIBLE);
+                Intent myIntent = new Intent(LandingPage.this, CreatePoll.class);
+                myIntent.putExtra("key", value); //Optional parameters
+                LandingPage.this.startActivity(myIntent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,9 +173,9 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<Fetch_all_polls> call, Response<Fetch_all_polls> response) {
                 response.body();
-                ArrayList<Polldata> polls=response.body().getPolls();
-                ArrayList<Option_data> options=response.body().getOptions();
-                ArrayList<Topic_data> topics=response.body().getTopics();
+                polls=response.body().getPolls();
+                options=response.body().getOptions();
+                topics=response.body().getTopics();
                 Log.d("Fetched",response.body().getStatus()+"");
             }
 

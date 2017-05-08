@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LandingPage"></activity>
+        <activity android:name=".CreatePoll"></activity>
     </application>
 
 </manifest>

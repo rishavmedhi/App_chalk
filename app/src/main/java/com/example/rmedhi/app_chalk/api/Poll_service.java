@@ -25,7 +25,6 @@ public interface Poll_service {
     @POST("login")
     Call<Fetch_api> api_user_login(@Field("email") String email, @Field("pswd") String password);
 
-    @FormUrlEncoded
     @POST("fetch-polls")
     Call <Fetch_all_polls> api_fetch_all_polls();
 }
