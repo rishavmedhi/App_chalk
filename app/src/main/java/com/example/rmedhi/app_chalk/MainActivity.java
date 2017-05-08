@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.retype_password)
     EditText retype_pass_text;
 
+    private int mode=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 password_text.setVisibility(rlayout.VISIBLE);
                 retype_pass_text.setVisibility(rlayout.VISIBLE);
                 log_action_btn.setVisibility(rlayout.VISIBLE);
-
+                mode=1;
             }
         });
 
@@ -86,20 +88,28 @@ public class MainActivity extends AppCompatActivity {
                 email_text.setVisibility(rlayout.VISIBLE);
                 password_text.setVisibility(rlayout.VISIBLE);
                 log_action_btn.setVisibility(rlayout.VISIBLE);
+                mode=0;
             }
         });
 
         log_action_btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v)
             {
-                String user_email=email_text.getText().toString();
-                String user_password=password_text.getText().toString();
-                int flag=0;
-                if (user_password.equals(retype_pass_text.getText().toString())==true)
-                {
-                    flag=user_signup(user_email,user_password);
+                String user_email = email_text.getText().toString();
+                String user_password = password_text.getText().toString();
+                int flag = 0;
+                // login mode
+                if (mode==0){
+                        flag = user_login(user_email, user_password);
                 }
-                Log.d("hello:",flag+"");
+                //sign mode
+                if (mode==1) {
+
+                    if (user_password.equals(retype_pass_text.getText().toString()) == true) {
+                        flag = user_signup(user_email, user_password);
+                    }
+                    Log.d("hello:", flag + "");
+                }
             }
         });
     }
@@ -121,6 +131,37 @@ public class MainActivity extends AppCompatActivity {
                 response.body(); // have your all data
                 String uid =response.body().getUid();
                 String status=response.body().getStatus();
+            }
+
+            @Override
+            public void onFailure(Call<Fetch_api> call, Throwable t) {
+                Log.d("failure",t.toString());
+            }
+        });
+        return 1;
+    }
+
+    protected int user_login(String user_email, String user_password)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://52.77.240.129/rishav/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Poll_service service = retrofit.create(Poll_service.class);
+
+        Call<Fetch_api> fetch_obj = service.api_user_login(user_email,user_password);
+        fetch_obj.enqueue(new Callback<Fetch_api>() {
+            @Override
+            public void onResponse(Call<Fetch_api> call, Response<Fetch_api> response) {
+                response.body(); // have your all data
+                String uid =response.body().getUid();
+                String status=response.body().getStatus();
+                if (status.equals("1")==true) {
+                    Log.d("Login", "Success");
+                }
+                else
+                    Log.d("Login","fail");
             }
 
             @Override
