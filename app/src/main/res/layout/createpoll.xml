@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_poll_rl">
 
     <TextView
         android:id="@+id/createpoll_top_text"
@@ -16,15 +18,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/polldesc_text"
-        android:layout_alignLeft="@+id/editText"
+        android:layout_alignLeft="@+id/pollques"
         android:layout_alignRight="@+id/polldesc_text"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignStart="@+id/pollques"
         android:layout_below="@+id/createpoll_top_text"
         android:layout_marginTop="69dp"
         android:text="Poll Question" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/pollques"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -40,9 +42,9 @@
         android:id="@+id/polldesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/pollques"
+        android:layout_alignStart="@+id/pollques"
+        android:layout_below="@+id/pollques"
         android:layout_marginTop="84dp"
         android:ems="10"
         android:inputType="textPersonName" />
@@ -53,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/polldesc"
         android:layout_alignStart="@+id/polldesc"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/pollques"
         android:layout_marginTop="46dp"
         android:text="Poll Description" />
 

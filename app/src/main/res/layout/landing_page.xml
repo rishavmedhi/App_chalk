@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl">
+    android:id="@+id/landing_rl">
 
     <Button
         android:id="@+id/polls"
@@ -38,6 +38,13 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/r_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/spinner" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/your_poll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"

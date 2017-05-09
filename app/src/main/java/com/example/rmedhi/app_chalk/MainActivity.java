@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.rmedhi.app_chalk.api.Poll_service;
 import com.example.rmedhi.app_chalk.fetch_api.Fetch_api;
@@ -132,8 +133,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Fetch_api> call, Response<Fetch_api> response) {
                 response.body(); // have your all data
-                String uid =response.body().getUid();
                 String status=response.body().getStatus();
+                if (status.equals("1")==true) {
+                    String uid = response.body().getUid();
+                    Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                    Intent myIntent = new Intent(MainActivity.this, LandingPage.class);
+                    myIntent.putExtra("key", value); //Optional parameters
+                    MainActivity.this.startActivity(myIntent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "The email already exists", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -161,13 +171,13 @@ public class MainActivity extends AppCompatActivity {
                 String uid =response.body().getUid();
                 String status=response.body().getStatus();
                 if (status.equals("1")==true) {
-                    Log.d("Login", "Success");
+                    Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                     Intent myIntent = new Intent(MainActivity.this, LandingPage.class);
                     myIntent.putExtra("key", value); //Optional parameters
                     MainActivity.this.startActivity(myIntent);
                 }
                 else
-                    Log.d("Login","fail");
+                    Toast.makeText(MainActivity.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
             }
 
             @Override

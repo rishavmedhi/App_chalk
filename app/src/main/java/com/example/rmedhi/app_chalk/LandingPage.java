@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ public class LandingPage extends AppCompatActivity {
     private Context mContext;
 
     private RecyclerView mRecyclerView;
+    private RecyclerView your_poll_RecyclerView;
 
     private int g_pos;
 
@@ -59,7 +61,7 @@ public class LandingPage extends AppCompatActivity {
     ArrayList<Option_data> options;
     ArrayList<Topic_data> topics;
 
-    @BindView(R.id.rl)
+    @BindView(R.id.landing_rl)
     RelativeLayout mRelativeLayout;
 
     @Override
@@ -79,13 +81,6 @@ public class LandingPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_poll:
-//                int position = 0;
-                // setting blank template
-//                cardsList.add(position, new CardList());
-//                mAdapter.notifyItemInserted(0);
-//                mRecyclerView.scrollToPosition(position);
-//                mRecyclerView.setVisibility(View.VISIBLE);
-//                welcometext.setVisibility(View.INVISIBLE);
                 Intent myIntent = new Intent(LandingPage.this, CreatePoll.class);
                 myIntent.putExtra("key", value); //Optional parameters
                 LandingPage.this.startActivity(myIntent);
@@ -106,7 +101,9 @@ public class LandingPage extends AppCompatActivity {
         mContext = getApplicationContext();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.r_view);
+        your_poll_RecyclerView = (RecyclerView) findViewById(R.id.your_poll_view);
 
+        mLayoutManager = new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
@@ -116,6 +113,7 @@ public class LandingPage extends AppCompatActivity {
 
         mRecyclerView.setAdapter(mAdapter);
 
+        cardsList.add(new Pollcard());
         fetch_all_polls_call();
 
     }
