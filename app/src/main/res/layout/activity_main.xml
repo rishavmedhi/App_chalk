@@ -42,7 +42,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Email"
+        android:text=""
+        android:hint="Enter Email"
         android:layout_above="@+id/sign_up_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp" />
@@ -53,6 +54,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Enter Password"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/email"
         android:layout_alignStart="@+id/email" />
@@ -63,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sign_up_btn"
         android:layout_alignStart="@+id/sign_up_btn"
-        android:layout_below="@+id/sign_up_btn"
+        android:layout_below="@+id/retype_password"
         android:layout_marginTop="51dp"
         android:text="Button" />
 
@@ -73,6 +75,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Re-Enter Password"
         android:layout_below="@+id/password"
         android:layout_alignLeft="@+id/password"
         android:layout_alignStart="@+id/password"

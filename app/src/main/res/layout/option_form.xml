@@ -13,5 +13,5 @@
         android:layout_marginTop="149dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter a option" />
+        android:hint="Enter option description" />
 </RelativeLayout>
